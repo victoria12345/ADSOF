@@ -41,8 +41,19 @@ public class Combinatoria {
 	   */
   }
 
+  /**
+   * Declaramos la cache
+   *Sera utilicado para evitar redundancias en los calculos
+   */
   private Map<Integer, Long> cache = new HashMap<>();
 
+
+  /**
+   * Calcula la posicion que tendria en la cache
+   * @param n Número de elementos totales
+   * @param k Número de elementos, sin repetición, en cada combinación
+   * @return valor de la posicion
+   */
   private int posicion(int n, int k){
 
     return n*(n+1)/2 + k;
@@ -64,7 +75,7 @@ public class Combinatoria {
     else {
       long valor;
       if(cache.get(posicion(n,k)) == null){
-
+        //IntroduZco el valor
         valor = combinaciones(n-1, k-1)+ combinaciones (n-1, k);
         cache.put(posicion(n,k),valor);
 

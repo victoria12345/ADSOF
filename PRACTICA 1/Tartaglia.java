@@ -1,43 +1,75 @@
- 
-  public class Tartaglia{
+/**
+ * Esta aplicación calcula el triangulo de Tartaglia
+ * segun el numero de lineas introducido
+ * Utiliza combinaciones definida en combinatoria.java para calcular
+ * los numeros combinatorios
+ *
+ * @author Victoria Pelayo e Ignacio Rabuñal
+*/
 
-  	private Combinatoria c;
-	private int n;
+public class Tartaglia{
 
-  	public Tartaglia(Combinatoria c, int n){
-	  	this.n = n;
-	  	this.c = c;
-  	}
+//Definicion de variables privadas
+  private Combinatoria c;
+  private int n;
 
-  	public String toString(){
+  /**
+   * Guarda en las variables privadas los valores pasados a la funcion
+   * @param c de tipo combinatoria
+   * @param n numero de lineas
+   */
+	public Tartaglia(Combinatoria c, int n){
+  	this.n = n;
+  	this.c = c;
+	}
 
-  		String s = "";
+   /**
+   * Se encarga de escribir el triangulo de tartaglia como una cadena
+   * @return triangulo de tartaglia en forma de cadena
+   */
+	public String toString(){
 
-  		for(int i = 0; i < n; i++){
-  			for(int j = 0; j<= i; j++){
-  				s = s + c.combinaciones(i,j) + " ";
-  			}
+		String tartaglia = "";
 
-  			s = s + "\n";
+		for(int i = 0; i < n; i++){
+			for(int j = 0; j<= i; j++){
+        //Se va llamando a la funcion combinaciones para calcular el numero combinatorio
+				tartaglia = tartaglia + c.combinaciones(i,j) + " ";
+			}
 
-  		}
+			tartaglia = tartaglia + "\n";
 
-  		return s;
-  	}
+		}
 
-  	public static void main(String[] args){
+		return tartaglia;
+	}
 
-  		if (args.length!=1) {
-    	  System.out.println("Se espera un argumento como parametro, el numero de filas.");
-    	  System.out.println("  n = Número total de elementos ");
+  /**
+   * Punto de entrada a la aplicación.
+   * 
+   * Este método imprime el triangulo de tartaglia en funcion del parametro de entrada
+   * @param args Los argumentos de la línea de comando. Se esperan un numero entero
+   */
+
+	public static void main(String[] args){
+
+		if (args.length!=1) {
+  	  System.out.println("Se espera un argumento como parametro, el numero de filas.");
+  	  System.out.println("  n = Número total de elementos ");
+    }
+
+    else {
+  	  int n  = Integer.parseInt(args[0]);   // convertimos de String a int
+
+      //Comprobamos que el numero introducido no sea negativo
+      if(n < 0){
+        System.out.println("Error con el parametro introducido, se espera un entero positivo, el numero de filas.");
       }
 
-      else {
-    	  int n  = Integer.parseInt(args[0]);   // convertimos String a int
-    	  Combinatoria c = new Combinatoria();
+  	  Combinatoria c = new Combinatoria();
 
-    	  System.out.println(new Tartaglia(c,n));
-      }
+  	  System.out.println(new Tartaglia(c,n));
+    }
 
-  	}
-  }
+	}
+}
