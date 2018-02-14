@@ -5,6 +5,7 @@
  * los numeros combinatorios
  *
  * @author Victoria Pelayo e Ignacio Rabuñal
+ * grupo 2101
 */
 
 public class Tartaglia{

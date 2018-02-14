@@ -5,8 +5,8 @@
  * Los casos base son c(n, 0) = 1 = c(n, n)  y c(n, k) = 0 para todo k mayor que n</p> 
  * <p><b>Nota</b>: Esta implementación no es muy eficiente, al hacer muchos cálculos redundantes.
  * Se aconseja usar valores pequeños de n y k, entre 0 y 30</p>
- * @author Estudiante EPS estudiante.eps@uam.es
- *
+ * @author Victoria Pelayo e Ignacio Rabuñal
+ * grupo 2101
  */
 
 
