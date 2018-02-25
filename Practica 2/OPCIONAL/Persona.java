@@ -148,7 +148,7 @@ public class Persona{
  class Alumno extends Persona{	
 	private Fecha matriculacion; //Fecha de matriculacion en la autoescuela
 	private String permiso; //permiso en el que esta matriculado
-	private String carnet; //carnet que posee previamente
+	private String carnet[] = new String[10]; //carnet que posee previamente
 	private Fecha teorico; //fecha en el que aprueba el teorico
 	private Fecha practico; //fecha en el que aprueba el practico
 	private int descuento; //descuento del alumno
@@ -232,7 +232,7 @@ public class Persona{
    * @author Victoria Pelayo e Ignacio Rabunnal
    * @return permiso el permiso del alumno
    */
-	public String getCarnet(){
+	public String[] getCarnet(){
 		return carnet;
 	}
 
@@ -281,7 +281,7 @@ public class Persona{
    * @param carnet nuevo tipo de carnet que ya posee
    * @author Victoria Pelayo e Ignacio Rabunnal
    */
-	public void setCarnet(String carnet){
+	public void setCarnet(String[] carnet){
 		this.carnet = carnet;
 	}
 }
@@ -432,6 +432,7 @@ public class Persona{
 	public void setFinActividad(Fecha fechaFin){
 		this.finActividad = fechaFin;
 	}
+
 
 	
 }

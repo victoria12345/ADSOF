@@ -4,6 +4,8 @@
  * grupo 2101
  */
 
+import java.util.*;
+
 public class Persona{
 	private String nombre; //Nombre 
 	private String apellido; //Apellido 
@@ -146,7 +148,7 @@ public class Persona{
  class Alumno extends Persona{	
 	private Fecha matriculacion; //Fecha de matriculacion en la autoescuela
 	private String permiso; //permiso en el que esta matriculado
-	private String carnet; //carnet que posee previamente
+	private String carnet[] = new String[10]; //carnet que posee previamente
 	private Fecha teorico; //fecha en el que aprueba el teorico
 	private Fecha practico; //fecha en el que aprueba el practico
 	private int descuento; //descuento del alumno
@@ -230,7 +232,7 @@ public class Persona{
    * @author Victoria Pelayo e Ignacio Rabunnal
    * @return permiso el permiso del alumno
    */
-	public String getCarnet(){
+	public String[] getCarnet(){
 		return carnet;
 	}
 
@@ -279,7 +281,158 @@ public class Persona{
    * @param carnet nuevo tipo de carnet que ya posee
    * @author Victoria Pelayo e Ignacio Rabunnal
    */
-	public void setCarnet(String carnet){
+	public void setCarnet(String[] carnet){
 		this.carnet = carnet;
 	}
+}
+
+/**
+ * Aqui definimos la clase hija Profesor
+ * @author Victoria Pelayo e Ignacio Rabuñal
+ * grupo 2101
+ */
+ class Profesor extends Persona{	
+	private int nSegSocial; //numero de la seguridad social
+	private double sueldo; //carnet que posee previamente
+	private List<String> categorias = new ArrayList<String>(); //Lista de categorias que puede impartir
+	private Fecha iniActividad; //fecha en el que aprueba el practico
+	private Fecha finActividad; //descuento del alumno
+	private String autoescuela;
+
+	/**
+   * Constructor de la clase alumno. 
+   * @param dni el dni 
+   * @param nombre nombre 
+   * @param apellido apellido 
+   * @param social numero de la seguridad social
+   * @param categorias categorias que puede impartir el profesor
+   * @param inicio primer dia que trabajo en la autoescuela
+   * @param fin ultimo dia que trabajo en la autoescuela
+   * @author Victoria Pelayo e Ignacio Rabunnal
+   */
+	public Profesor(String dni,String nombre, String apellido,int social,  List<String> categorias,Fecha inicio, Fecha fin){
+		super(dni, nombre, apellido);
+		this.nSegSocial = social;
+		this.sueldo = 900;
+		this.categorias = categorias;
+		this.iniActividad = inicio;
+		this.finActividad = fin;
+
+
+	}
+
+	/**
+   * Imprime por pantalla los datos principales de un profesor
+   * @author Victoria Pelayo e Ignacio Rabunnal
+   * @return cadena de caracteres formada por los datos principales
+   */
+	public String toString(){
+  		String alumno = "";
+
+  		//Se imprimen los datos principales de una persona mas los de un alumno
+  		return super.toString()+
+  			"\t"+ "Numero seguridad social: " + nSegSocial+ "\n"+
+  			"\t"+ "Sueldo: " + sueldo + "\n"+ 
+  			"\t" + "Categorias: " + categorias + "\n" +
+  			"\t" + "Fecha Ini: " + iniActividad + "\n"+
+  			"\t" + "Fecha Fin: " + finActividad + "\n";
+  	}
+
+  	/**
+   * Devuelve numero de la seguridad social de un profesor
+   * @author Victoria Pelayo e Ignacio Rabunnal
+   * @return nSegSocial numero de la seguridad social
+   */
+	public int getNSegSocial(){
+		return nSegSocial;
+	}
+
+	/**
+   * Devuelve sueldo de un profesor
+   * @author Victoria Pelayo e Ignacio Rabunnal
+   * @return sueldo sueldo de un profesor
+   */
+	public double getSueldo(){
+		return sueldo;
+	}
+
+	/**
+   * Devuelve categorias que puede impartir un profesor
+   * @author Victoria Pelayo e Ignacio Rabunnal
+   * @return categorias que puede impartir un profesor
+   */
+	public List<String> getCategorias(){
+		return categorias;
+	}
+
+	/**
+   * Devuelve la fecha en la que el profesor empezo a trabajr en la autoescuela
+   * @author Victoria Pelayo e Ignacio Rabunnal
+   * @return fechaIni fecha de inicio de trabajar
+   */
+	public Fecha getFechaIni(){
+		return iniActividad;
+	}
+
+	/**
+   * Devuelve la fecha en la que el profesor paro de trabajr en la autoescuela
+   * @author Victoria Pelayo e Ignacio Rabunnal
+   * @return fechaFin fecha de fin de trabajar
+   */
+	public Fecha getFechaFin(){
+		return finActividad;
+	}
+
+	/**
+   * Cambia el numero de la seguridad social de un profesor
+   * @author Victoria Pelayo e Ignacio Rabunnal
+   * @param numero nuevo numero de la seguridad social
+   */
+	public void setNSegSocial(int numero){
+		this.nSegSocial = numero;
+	}
+
+	/**
+   * Cambia el sueldo de un profesor
+   * @author Victoria Pelayo e Ignacio Rabunnal
+   * @param sueldo nuevo sueldo que se le asigna
+   */
+	public void setSueldo(double sueldo){
+		if(sueldo >= 900){
+			this.sueldo  = sueldo;
+			return;
+		}
+
+		System.out.println("El sueldo minimo es 900.");
+	}
+
+	/**
+   * Cambia las categorias de un profesor
+   * @author Victoria Pelayo e Ignacio Rabunnal
+   * @param categorias lista de las categorias que puede impartir
+   */
+	public void setCategorias(List<String> categorias){
+		this.categorias = categorias;
+	}
+
+	/**
+   * Cambia la fecha de inicio
+   * @author Victoria Pelayo e Ignacio Rabunnal
+   * @param fechaIni nueva fecha de inicio
+   */
+	public void setIniActividad(Fecha fechaIni){
+		this.iniActividad = fechaIni;
+	}
+
+	/**
+   * Cambia la fecha de fin
+   * @author Victoria Pelayo e Ignacio Rabunnal
+   * @param fechaFin nueva fecha de fin
+   */
+	public void setFinActividad(Fecha fechaFin){
+		this.finActividad = fechaFin;
+	}
+
+
+	
 }
