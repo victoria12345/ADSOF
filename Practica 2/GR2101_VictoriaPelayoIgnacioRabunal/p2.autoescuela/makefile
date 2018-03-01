@@ -11,3 +11,6 @@ Persona.class: Persona.java
 clean:
 	rm -rf *.class
 
+doc:
+	javadoc -d doc Fecha.java Persona.java
+
