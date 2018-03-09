@@ -7,8 +7,8 @@
 public class Sesion{
 	private Fecha fecha;
 	private Pelicula pelicula;
-	private int butacas;
-	private int vendidas;
+	private Entrada[] = butacas[MAXENTRADAS];
+	private Entrada[] = vendidas[MAXENTRADAS];
 
 	/**
 	* Constructor de la clase Pelicula

@@ -6,8 +6,9 @@
 
 public class Sala{
 	public static int MAXSALAS = 10;
+	public static int MAXENTRADAS = 100;
 	private int id;
-	private int butacas;
+	private Enrtadas[] = butacas[MAXENTRADAS];
 	private Sesion[] = sesiones[MAXSALAS];
 
 	/**

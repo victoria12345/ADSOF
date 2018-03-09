@@ -24,7 +24,7 @@ public class Pelicula{
 	* @param director nombre del director de la pelicula
 	* @param anno anno en el que la pelicula fue estrenada
 	* @param sinopsis sinopsis de la pelicula
-	* @genero genero genero de la pelicula
+	* @param genero genero de la pelicula
 	*/
 	public Pelicula(String titulo, String director, int anno, String sinopsis, Genero genero){
 
