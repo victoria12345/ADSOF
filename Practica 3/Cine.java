@@ -6,6 +6,13 @@
 
 import java.util.*;
 
+/**
+   * Enumeracion resultado de funciones
+   */
+public enum Status{
+	OK, ERROR
+}
+
 public class Cine{
 	private String nombre;
 	private String direccion;
@@ -88,7 +95,85 @@ public class Cine{
 	* Se añade una pelicula al cine
 	* @param pelicula pelicula que se quiere añadir
 	*/
-	public void addPelicula(){
+	public void addPelicula(Pelicula pelicula){
+		int i;
 
+		for(i = 0; i < peliculas.getSize(); i++){
+			if(pelicula.getNombre() == peliculas.get(i).getNombre() ){
+				return;
+			}
+		}
+
+		peliculas.add(pelicula);
 	}
+
+	/**
+	* Se añade una sala al cine
+	* @param sala sala que se quiere añadir
+	*/
+	public void addSala(Sala sala){
+		int i;
+
+		for(i = 0; i < salas.getSize(); i++){
+			if(sala.getId() == salas.get(i).getId() ){
+				return;
+			}
+		}
+
+		salas.add(sala);
+	}
+
+	/**
+	* Se elimina una pelicula
+	* @param pelicula Pelicula que se quiere eliminar
+	*/
+
+	private Status removePelicula(Pelicula pelicula){
+		int i;
+
+		for(i = 0; i < peliculas.getSize(); i++){
+			if(pelicula == peliculas.get(i) ){
+				peliculas.remove(i);
+				return OK;
+			}
+		}
+
+		return ERROR;
+	}
+
+	/**
+	* Se elimina una sala
+	* @param sala Sala que se quiere eliminar
+	*/
+
+	private Status removeSala(Sala sala){
+		int i;
+
+		for(i = 0; i < salas.getSize(); i++){
+			if(sala.getId() == salas.get(i).getId() ){
+				salas.remove(i );
+				return OK;
+			}
+		}
+
+		return ERROR;
+	}
+
+	public Status removePeliculaCartelera(Pelicula pelicula){
+		int i, cont = 0;
+
+		if(removePelivula(pelicula) == ERROR){
+			return ERROR;
+		}
+
+		for(i = 0; i < salas.getSize(); i++){
+			if(salas.get(i).getPelicula() == pelicula){
+				///AÑADIR FUNCION A SALA PARA QUE DEVUELVA SESIONES QUE TIENEN ESA PELI!!!!!!!!!!!!!!!!!!!!!!!
+				}
+			}
+		}
+
+		System.out.printIn("Numero de ")
+	}
+
 }
