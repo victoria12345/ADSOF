@@ -39,4 +39,13 @@ public class EntradaEspectador extends Entrada{
 	public void setDescuento(int descuento){
 		this.descuento = descuento;
 	}
+
+	/**
+	* Modifica el descuento asociado a una entrada
+	* @param descuento entero que indica el nuevo descuento asociado
+	* @author Victoria Pelayo e Ignacio Rabuñal
+	*/
+	public double calcularPrecio(){
+		return super.getPrecio() - (super.getPrecio() * descuento/100);
+	}
 }
