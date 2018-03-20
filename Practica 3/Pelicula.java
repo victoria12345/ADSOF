@@ -7,7 +7,7 @@
 /**
    * Enumeracion sobre los generos que puede ser una pelicula
    */
-public enum Genero{
+ enum Genero{
 	COMEDIA, DRAMA, TERROR, SUSPENSE
 }
 
@@ -42,7 +42,7 @@ public class Pelicula{
    * @return cadena de caracteres formada por los datos
    */
 	public String toString(){
-		pelicula = "";
+		String pelicula = "";
 
 		return pelicula = pelicula + "Título: " + titulo + "\n"+
 		"Director: "+ director + "\n"+

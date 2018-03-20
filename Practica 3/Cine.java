@@ -9,7 +9,7 @@ import java.util.*;
 /**
    * Enumeracion resultado de funciones
    */
-public enum Status{
+enum Status{
 	OK, ERROR
 }
 
@@ -71,7 +71,7 @@ public class Cine{
 	* Devuelve las peliculas de un cine
 	* @return peliculas del cine
 	*/
-	public List<Pelicula> getDireccion(){
+	public List<Pelicula> getPeliculas(){
 		return this.peliculas;
 	}
 
@@ -87,7 +87,7 @@ public class Cine{
 	* Devuelve las entradas de un cine
 	* @return entradas del cine
 	*/
-	public List<Sala> getEntradas(){
+	public List<Entrada> getEntradas(){
 		return this.entradas;
 	}
 
@@ -171,9 +171,6 @@ public class Cine{
 				///AÑADIR FUNCION A SALA PARA QUE DEVUELVA SESIONES QUE TIENEN ESA PELI!!!!!!!!!!!!!!!!!!!!!!!
 				}
 			}
-		}
-
-		System.out.printIn("Numero de ")
 	}
 
 }

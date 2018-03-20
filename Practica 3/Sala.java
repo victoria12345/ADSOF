@@ -4,12 +4,16 @@
  * grupo 2101
  */
 
+import java.util.*;
+
 public class Sala{
-	public static int MAXSALAS = 10;
-	public static int MAXENTRADAS = 100;
+
+	public static int MAXSESIONES = 10;
+	public static int MAXBUTACAS = 100;
+
 	private int id;
-	private Enrtadas[] = butacas[MAXENTRADAS];
-	private Sesion[] = sesiones[MAXSALAS];
+	private List<Entrada> butacas = new ArrayList<Entrada>();
+	private List<Sesion> sesiones = new ArrayList<Sesion>();
 
 	/**
 	* Constructor de la clase Pelicula
@@ -19,7 +23,7 @@ public class Sala{
 	* @param sinopsis sinopsis de la pelicula
 	* @genero genero genero de la pelicula
 	*/
-	public Sala(int id, int butacas, Sesion[] sesiones){
+	public Sala(int id, List<Entrada> butacas, List<Sesion> sesiones){
 
 		this.id = id;
 		this.butacas = butacas;
@@ -33,12 +37,10 @@ public class Sala{
    * @return cadena de caracteres formada por los datos
    */
 	public String toString(){
-		pelicula = "";
+		String sesion = "";
 
-		return pelicula = pelicula + "Fecha: " + fecha + "\n"+
-		"Pelicula: "+ pelicula + "\n"+
-		"Total butacas: "+ butacas + "\n"+
-		"Vendidas: "+ vendidas+ "\n";
+		return sesion = sesion + "Id:" + id + "\nButacas: " + butacas+
+						"\n Sesiones: " + sesiones +"\n";
 	}
 
 	/**
@@ -52,12 +54,12 @@ public class Sala{
 	}
 
 	/**
-	* Devuelve numero de butacas de una sala
+	* Devuelve las butacas de una sala
 	* @author Victoria Pelayo e Ignacio Rabunnal
 	* @return butacas numero de butacas de una sala
 	*/
 
-	public int getButacas(){
+	public List<Entrada> getButacas(){
 		return butacas;
 	}
 
@@ -67,34 +69,85 @@ public class Sala{
 	* @return sesiones array de las sesiones de esa sala
 	*/
 
-	public int getSesiones(){
+	public List<Sesion> getSesiones(){
 		return sesiones;
 	}
 
 	/**
-	* Cambia el numero de butacas de una sala
-	* @author Victoria Pelayo e Ignacio Rabunnal
-	* @param butacas nuevo numero de butacas en la sala
+	* Se añade una butaca
+	* @param butaca butaca que se desea añadir
+	* @return true si se realiza con exito y false si no es asi
 	*/
+	public boolean addButaca(Entrada butaca){
+		if(butacas.size() == MAXBUTACAS){
+			return false;
+		}
 
-	public void setButacas(int butacas){
-		this.butacas = butacas;
+		butacas.add(butaca);
+		return true;
 	}
 
 	/**
-	* Modifica el array de sesiones de Sala
-	* @author Victoria Pelayo e Ignacio Rabunnal
-	* @param sesiones array de sesiones que habra en esa sala
+	* Se elimina una butaca
+	* @param butaca butaca que se desea eliminar
+	* @return true si se realiza con exito y false si no es asi
 	*/
+	public boolean delButaca(Entrada butaca){
+		if(butacas.isEmpty() == true){
+			return false;
+		}
 
-	public void setSesiones(Sesiones[] sesiones){
-		this.sesiones = sesiones;
+		int i;
+		for(i = 0; i < butacas.size(); i++){
+			if(butacas.get(i).getId() == butaca.getId()){
+				butacas.remove(i);
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
-	* Añadir una sesion a una sala
-	* @param sesion sesion que se quiere añadir
-	* @return true si se ha añadido y false si no es asi
+	* Se añade una sesion
+	* @param sesion sesion que se desea añadir
+	* @return true si se realiza con exito y false si no es asi
 	*/
+	public boolean addSesion(Sesion sesion){
+		if(sesiones.size() == MAXSESIONES){
+			return false;
+		}
 
+		int i;
+		for(i = 0; i < sesiones.size(); i++){
+			if(sesiones.get(i).getFecha() == sesion.getFecha()){
+				return false;
+			}
+		}
+
+		sesiones.add(sesion);
+		return true;
+	}
+
+	/**
+	* Se elimina una sesion
+	* @param sesion sesion que se desea eliminar
+	* @return true si se realiza con exito y false si no es asi
+	*/
+	public boolean delSesion(Entrada sesion){
+		if(sesiones.isEmpty() == true){
+			return false;
+		}
+
+		int i;
+		for(i = 0; i < sesiones.size(); i++){
+			if(sesiones.get(i).getId() == sesion.getId()){
+				sesiones.remove(i);
+				return true;
+			}
+		}
+
+		return false;
+	}
+	
 }
