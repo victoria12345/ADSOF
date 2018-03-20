@@ -6,14 +6,11 @@
 
 import java.util.*;
 
-/**
-   * Enumeracion resultado de funciones
-   */
-enum Status{
-	OK, ERROR
-}
 
 public class Cine{
+	private static int MAXPELIS = 20;
+	private static int MAXSALAS = 20;
+	private static int MAXBUTACAS = 500;
 	private String nombre;
 	private String direccion;
 	private List<Pelicula> peliculas = new ArrayList<Pelicula>();
@@ -95,32 +92,42 @@ public class Cine{
 	* Se añade una pelicula al cine
 	* @param pelicula pelicula que se quiere añadir
 	*/
-	public void addPelicula(Pelicula pelicula){
+	public boolean addPelicula(Pelicula pelicula){
 		int i;
 
-		for(i = 0; i < peliculas.getSize(); i++){
-			if(pelicula.getNombre() == peliculas.get(i).getNombre() ){
-				return;
+		if (peliculas.size() == MAXPELIS){
+			return false;
+		}
+
+		for(i = 0; i < peliculas.size(); i++){
+			if(pelicula.getTitulo() == peliculas.get(i).getTitulo()){
+				return false;
 			}
 		}
 
 		peliculas.add(pelicula);
+		return true;
 	}
 
 	/**
 	* Se añade una sala al cine
 	* @param sala sala que se quiere añadir
 	*/
-	public void addSala(Sala sala){
+	public boolean addSala(Sala sala){
 		int i;
 
-		for(i = 0; i < salas.getSize(); i++){
-			if(sala.getId() == salas.get(i).getId() ){
-				return;
+		if(salas.size() == MAXSALAS){
+			return false;
+		}
+
+		for(i = 0; i < salas.size(); i++){
+			if(salas.get(i).getId() == salas.get(i).getId() ){
+				return false;
 			}
 		}
 
 		salas.add(sala);
+		return true;
 	}
 
 	/**
@@ -128,17 +135,21 @@ public class Cine{
 	* @param pelicula Pelicula que se quiere eliminar
 	*/
 
-	private Status removePelicula(Pelicula pelicula){
+	private boolean removePelicula(Pelicula pelicula){
 		int i;
 
-		for(i = 0; i < peliculas.getSize(); i++){
-			if(pelicula == peliculas.get(i) ){
+		if(peliculas.isEmpty() == true){
+			return false;
+		}
+
+		for(i = 0; i < peliculas.size(); i++){
+			if(pelicula.getTitulo() == peliculas.get(i).getTitulo() ){
 				peliculas.remove(i);
-				return OK;
+				return true;
 			}
 		}
 
-		return ERROR;
+		return false;
 	}
 
 	/**
@@ -146,31 +157,45 @@ public class Cine{
 	* @param sala Sala que se quiere eliminar
 	*/
 
-	private Status removeSala(Sala sala){
+	private boolean removeSala(Sala sala){
 		int i;
 
-		for(i = 0; i < salas.getSize(); i++){
-			if(sala.getId() == salas.get(i).getId() ){
+		if (salas.isEmpty() == true){
+			return false;
+		}
+
+		for(i = 0; i < salas.size(); i++){
+			if(salas.get(i).getId() == salas.get(i).getId() ){
 				salas.remove(i );
-				return OK;
+				return true;
 			}
 		}
 
-		return ERROR;
+		return false;
 	}
 
-	public Status removePeliculaCartelera(Pelicula pelicula){
-		int i, cont = 0;
-
-		if(removePelivula(pelicula) == ERROR){
-			return ERROR;
+	public boolean removePeliculaCartelera(Pelicula pelicula){
+		if (removePelicula(pelicula) == false){
+			return false;
 		}
 
-		for(i = 0; i < salas.getSize(); i++){
-			if(salas.get(i).getPelicula() == pelicula){
-				///AÑADIR FUNCION A SALA PARA QUE DEVUELVA SESIONES QUE TIENEN ESA PELI!!!!!!!!!!!!!!!!!!!!!!!
+		int i;
+		for (i = 0; i< salas.size(); i++){
+			int j;
+			List<Sesion> sesion = salas.get(i).getSesiones();
+
+			for(j = 0; j< sesion.size(); j++){
+				if(sesion.get(j).getPelicula().getTitulo() == pelicula.getTitulo()){
+					if(salas.get(i).delSesion(sesion.get(j)) == false){
+						return false;
+					}
 				}
+
 			}
+
+		}
+
+		return true;		
 	}
 
 }

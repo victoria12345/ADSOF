@@ -134,7 +134,7 @@ public class Sala{
 	* @param sesion sesion que se desea eliminar
 	* @return true si se realiza con exito y false si no es asi
 	*/
-	public boolean delSesion(Entrada sesion){
+	public boolean delSesion(Sesion sesion){
 		if(sesiones.isEmpty() == true){
 			return false;
 		}

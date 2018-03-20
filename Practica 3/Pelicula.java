@@ -4,12 +4,6 @@
  * grupo 2101
  */
 
-/**
-   * Enumeracion sobre los generos que puede ser una pelicula
-   */
- enum Genero{
-	COMEDIA, DRAMA, TERROR, SUSPENSE
-}
 
 public class Pelicula{
 	private String titulo;
