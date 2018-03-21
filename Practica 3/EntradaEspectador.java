@@ -3,12 +3,11 @@ public class EntradaEspectador extends Entrada{
 
 	/**
 	* Constructor de la clase entrada espectador
-	* @param id identificador de la entrada
 	* @param precio precio de la entrada
 	* @param descuento descuento de la entrada
 	*/
-	public EntradaEspectador(int id, double precio, int descuento){
-		super(id, precio);
+	public EntradaEspectador(double precio, int descuento){
+		super( precio);
 		this.descuento = descuento;
 	}
 

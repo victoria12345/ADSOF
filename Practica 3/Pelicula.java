@@ -14,6 +14,7 @@ public class Pelicula{
 
 	/**
 	* Constructor de la clase Pelicula
+	* @author Victoria Pelayo e Ignacio Rabuñal
 	* @param titutlo titulo que va a tener la clase pelidula
 	* @param director nombre del director de la pelicula
 	* @param anno anno en el que la pelicula fue estrenada

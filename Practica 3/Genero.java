@@ -1,6 +1,6 @@
 /**
    * Enumeracion sobre los generos que puede ser una pelicula
    */
- enum Genero{
+public enum Genero{
 	COMEDIA, DRAMA, TERROR
 }

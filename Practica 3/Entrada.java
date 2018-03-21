@@ -5,18 +5,15 @@
  */
 
 public class Entrada{
-	private int id;
 	private double precio;
 
 	/**
 	* Constructor de la clase Pelicula
-	* @param id identificador de la entrada
 	* @param precio precio de la entrada
 	* @author Victoria Pelayo e Ignacio Rabuñal
 	*/
-	public Entrada(int id, double precio){
+	public Entrada(double precio){
 
-		this.id = id;
 		this.precio = precio;
 	}
 
@@ -28,7 +25,7 @@ public class Entrada{
 	public String toString(){
 		String entrada = "";
 
-		return entrada = entrada + "Id: "+ id + "\n" + "Precio: " + precio + "\n";
+		return entrada = entrada + "Precio: " + precio + "\n";
 	}
 
 	/**
@@ -39,15 +36,6 @@ public class Entrada{
 
 	public double getPrecio(){
 		return precio;
-	}
-
-	/**
-	* Devuelve el identificador de una entrada
-	* @author Victoria Pelayo e Ignacio Rabunnal
-	* @return id identificador de una entrada
-	*/
-	public int getId(){
-		return id;
 	}
 
 	/**
