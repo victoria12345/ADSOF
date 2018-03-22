@@ -1,0 +1,4 @@
+Inicial: 
+Título: titulo   Director: director   Anno: 1960   Sinopsis: sinopsis   Genero: DRAMA   
+Final: 
+Título: Titulo2   Director: Director2   Anno: 50   Sinopsis: Sinopsis2   Genero: TERROR   

@@ -1,0 +1,83 @@
+Estado inicial: 
+Nombre: Cine Victoria
+Direccion: Calle ola
+Peliculas[]
+Salas: []
+Entradas: []
+
+
+Estado 1: 
+Nombre: Cine Victoria
+Direccion: Calle ola
+Peliculas[Título: titulo   Director: director   Anno: 1960   Sinopsis: sinopsis   Genero: DRAMA   , Título: titulo2   Director: director2   Anno: 1960   Sinopsis: sinopsis2   Genero: DRAMA   ]
+Salas: [Id:1   Butacas: 5    Sesiones: []   , Id:2   Butacas: 30    Sesiones: []   ]
+Entradas: []
+
+Salas: [Id:1   Butacas: 5    Sesiones: []   , Id:2   Butacas: 30    Sesiones: []   ]
+Peliculas: [Título: titulo   Director: director   Anno: 1960   Sinopsis: sinopsis   Genero: DRAMA   , Título: titulo2   Director: director2   Anno: 1960   Sinopsis: sinopsis2   Genero: DRAMA   ]
+
+-------------------------------------------------
+
+
+	Se pasa el primer test de añadir sesion
+
+	Se eliminan salas correctamente(1)
+
+	Se elimina salas correctamente(2)
+
+	Se eliminan sesiones correctamente
+
+	Se eliminan sesiones correctamente
+
+-------------------------------------------------
+
+
+Estado2: Nombre: Cine Victoria
+Direccion: Calle ola
+Peliculas[Título: titulo   Director: director   Anno: 1960   Sinopsis: sinopsis   Genero: DRAMA   , Título: titulo2   Director: director2   Anno: 1960   Sinopsis: sinopsis2   Genero: DRAMA   ]
+Salas: [Id:2   Butacas: 30    Sesiones: []   ]
+Entradas: []
+
+
+	prueba 1 borrar peliculas pasada
+
+	prueba 1 borrar peliculas pasada
+
+Salas(1): [Id:2   Butacas: 30    Sesiones: [Fecha: 5-10-2011   Pelicula: titulo   Butacas disponibles: 5  Vendidas: 0   ]   ]
+
+Peliculas(1): [Título: titulo2   Director: director2   Anno: 1960   Sinopsis: sinopsis2   Genero: DRAMA   , Título: titulo   Director: director   Anno: 1960   Sinopsis: sinopsis   Genero: DRAMA   ]
+
+Salas(2): [Id:2   Butacas: 30    Sesiones: []   ]
+
+ Peliculas(2): [Título: titulo2   Director: director2   Anno: 1960   Sinopsis: sinopsis2   Genero: DRAMA   ]
+
+-------------------------------------------------
+
+
+Estado 3 : Nombre: Cine Victoria
+Direccion: Calle ola
+Peliculas[Título: titulo2   Director: director2   Anno: 1960   Sinopsis: sinopsis2   Genero: DRAMA   ]
+Salas: [Id:2   Butacas: 30    Sesiones: []   ]
+Entradas: []
+
+
+	Prueba 1 venta de entradas superada
+
+	Prueba 2 venta de entradas superada
+
+ Informacion sobre la sesion de la entrada vendida: Fecha: 5-10-2011   Pelicula: titulo   Butacas disponibles: 4  Vendidas: 1   
+
+	Prueba 2 venta de entradas superada
+
+Entradas: [Precio: 10.0  Descuento: 30  Descuento adicional: 30, Precio: 10.0]
+
+Ganancia: 14.9
+
+-------------------------------------------------
+
+Estado final: Nombre: Cine Victoria
+Direccion: Calle ola
+Peliculas[]
+Salas: []
+Entradas: []
+
