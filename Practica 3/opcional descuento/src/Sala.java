@@ -89,11 +89,9 @@ public class Sala{
 			}
 		}
 
-		// Si para esa sesion se vende mas entradas que butacas hay en la sala
-		// see cambian el numero de butacas en la sala
-		if(sesion.getDisponibles() >= butacas){ 
-			sesion.setButacas(butacas);
-		}
+		// Establecemos el mismo numero de butacas en la sesion que en la sala
+		
+		sesion.setButacas(butacas);
 		sesiones.add(sesion);
 		return true;
 	}
