@@ -1,0 +1,28 @@
+Inicial: 
+Fecha: 5-10-2011   Pelicula: titulo   Butacas disponibles: 10  Vendidas: 0   
+Modificacion1: 
+Fecha: 25-10-2011   Pelicula: titulo2   Butacas disponibles: 11  Vendidas: 0   
+Disponibles: 10
+
+Disponibles: 9
+
+Disponibles: 8
+
+Disponibles: 7
+
+Disponibles: 6
+
+Disponibles: 5
+
+Disponibles: 4
+
+Disponibles: 3
+
+Disponibles: 2
+
+Disponibles: 1
+
+Disponibles: 0
+
+Estado final: 
+Fecha: 25-10-2011   Pelicula: titulo2   Butacas disponibles: 0  Vendidas: 11   

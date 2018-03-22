@@ -1,0 +1,8 @@
+Inicial: 
+Id:1   Butacas: 5    Sesiones: []   
+Sesiones: [Fecha: 5-10-2011   Pelicula: titulo   Butacas disponibles: 5  Vendidas: 0   , Fecha: 25-10-2011   Pelicula: titulo   Butacas disponibles: 5  Vendidas: 0   ]
+
+Sesiones(2): [Fecha: 25-10-2011   Pelicula: titulo   Butacas disponibles: 5  Vendidas: 0   ]
+
+Estado final
+Id:1   Butacas: 6    Sesiones: [Fecha: 25-10-2011   Pelicula: titulo   Butacas disponibles: 5  Vendidas: 0   ]   
