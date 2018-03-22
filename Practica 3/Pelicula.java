@@ -39,11 +39,11 @@ public class Pelicula{
 	public String toString(){
 		String pelicula = "";
 
-		return pelicula = pelicula + "Título: " + titulo + "\n"+
-		"Director: "+ director + "\n"+
-		"Anno: "+ anno + "\n"+
-		"Sinopsis: "+ sinopsis+ "\n"+
-		"Genero: " + genero+ "\n";
+		return pelicula = pelicula + "Título: " + titulo + "   "+
+		"Director: "+ director + "   "+
+		"Anno: "+ anno + "   "+
+		"Sinopsis: "+ sinopsis+ "   "+
+		"Genero: " + genero+ "   ";
 	}
 
 	/**

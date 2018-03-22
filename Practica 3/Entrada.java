@@ -25,7 +25,7 @@ public class Entrada{
 	public String toString(){
 		String entrada = "";
 
-		return entrada = entrada + "Precio: " + precio + "\n";
+		return entrada = entrada + "Precio: " + precio ;
 	}
 
 	/**

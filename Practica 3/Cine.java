@@ -21,17 +21,11 @@ public class Cine{
 	* Constructor de la clase Cine
 	* @param nombre nombre del cine
 	* @param direccion direccion del cine
-	* @param peliculas lista de las peliculas del cine
-	* @param salas lista de las salas del cine
-	* @param entradas lista de las entradas del cine
 	* @author Victoria Pelayo e Ignacio Rabuñal
 	*/
-	public Cine(String nombre, String direccion, List<Pelicula> peliculas, List<Sala> salas, List<Entrada> entradas){
+	public Cine(String nombre, String direccion){
 		this.nombre = nombre;
 		this.direccion = direccion;
-		this.peliculas = peliculas;
-		this.salas = salas;
-		this.entradas = entradas;
 	}
 
 	/**
@@ -99,10 +93,8 @@ public class Cine{
 			return false;
 		}
 
-		for(i = 0; i < peliculas.size(); i++){
-			if(pelicula.getTitulo() == peliculas.get(i).getTitulo()){
-				return false;
-			}
+		if(peliculas.contains(pelicula) == true){
+			return false;
 		}
 
 		peliculas.add(pelicula);
@@ -120,10 +112,8 @@ public class Cine{
 			return false;
 		}
 
-		for(i = 0; i < salas.size(); i++){
-			if(salas.get(i).getId() == salas.get(i).getId() ){
-				return false;
-			}
+		if(salas.contains(sala) == true){
+			return false;
 		}
 
 		salas.add(sala);
@@ -132,13 +122,14 @@ public class Cine{
 
 	/**
 	* Se elimina una pelicula
+	* Es una funficn privada que es auxiliar de eliminarPeliculaCartelera
 	* @param pelicula Pelicula que se quiere eliminar
 	*/
 
 	private boolean removePelicula(Pelicula pelicula){
 		int i;
 
-		if(peliculas.isEmpty() == true){
+		if(peliculas.isEmpty() == true || peliculas.contains(pelicula) == false){
 			return false;
 		}
 
@@ -148,7 +139,6 @@ public class Cine{
 				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -157,16 +147,16 @@ public class Cine{
 	* @param sala Sala que se quiere eliminar
 	*/
 
-	private boolean removeSala(Sala sala){
+	public boolean removeSala(Sala sala){
 		int i;
 
-		if (salas.isEmpty() == true){
+		if (salas.isEmpty() == true || salas.contains(sala) == false){
 			return false;
 		}
 
 		for(i = 0; i < salas.size(); i++){
 			if(salas.get(i).getId() == salas.get(i).getId() ){
-				salas.remove(i );
+				salas.remove(i);
 				return true;
 			}
 		}
@@ -174,28 +164,155 @@ public class Cine{
 		return false;
 	}
 
+	/**
+	* Se elimina una pelicula de la cartelera
+	* @param pelicula pelicula que se desea eliminar
+	* @return true si se realiza correctamente y false si no es asi
+	* @author Victoria Pelayo e Ignacio Rabunnal
+	*/
 	public boolean removePeliculaCartelera(Pelicula pelicula){
 		if (removePelicula(pelicula) == false){
 			return false;
 		}
 
 		int i;
-		for (i = 0; i< salas.size(); i++){
+		//Se busca las sesiones en las que estaba esa pelicula
+		for(i = 0; i < salas.size(); i++){
+			List<Sesion> sesiones= salas.get(i).getSesiones();
 			int j;
-			List<Sesion> sesion = salas.get(i).getSesiones();
-
-			for(j = 0; j< sesion.size(); j++){
-				if(sesion.get(j).getPelicula().getTitulo() == pelicula.getTitulo()){
-					if(salas.get(i).delSesion(sesion.get(j)) == false){
-						return false;
-					}
+			for(j = 0; j < sesiones.size(); j++){
+				if(pelicula == sesiones.get(j).getPelicula()){
+					salas.get(i).delSesion(sesiones.get(j));
 				}
-
 			}
-
 		}
 
 		return true;		
+	}
+
+	/**
+	* Se añade una sesion al cine
+	* @param sesion sesion que se desea añadir
+	* @param sala sala en la que se añade
+	* @return true si se realiza correctamente y false si no es asi
+	* @author Victoria Pelayo e Ignacio Rabunnal
+	*/
+	public boolean addSesion(Sesion s, Sala sal){
+		if(salas.contains(sal) == false){
+			return false;
+		}
+
+		int i;
+		for(i = 0; i < salas.size(); i++){
+			if(salas.get(i).getId() == sal.getId()){
+				if(salas.get(i).addSesion(s)== true){
+					//Se añade la pelicula a la lista de peliculas
+					return addPelicula(s.getPelicula());
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	* Se añade una sesion al cine
+	* @param sesion sesion que se desea añadir
+	* @return true si se realiza correctamente y false si no es asi
+	* @author Victoria Pelayo e Ignacio Rabunnal
+	*/
+	public boolean delSesion(Sesion s){
+		int i;
+		List<Sesion> sesiones;
+		for(i = 0; i < salas.size(); i++){
+			if(salas.get(i).delSesion(s) == true){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	* Comprar entrada para una pelicula
+	* @param precio de la entrada
+	* @param dia de la semana que se compra
+	* @param titulo titulo de la pelicula que se quiere ver
+	* @return sesion donde se proyecta la pelicula o null en caso de error
+	*/
+
+	public Sesion comprarEntrada(double precio, Dia dia, String titulo){
+		List<Sesion> s;
+		int i,j;
+
+		Entrada entrada ;
+		if(dia == Dia.MIERCOLES){
+			entrada = new Entrada(precio);
+		}else{
+			entrada = new EntradaEspectador(precio, 30);
+		}
+
+		for(i = 0; i < salas.size(); i++){
+			s = salas.get(i).getSesiones();
+			for(j =0 ; j < s.size(); j++){
+				if(titulo == s.get(j).getPelicula().getTitulo() && s.get(j).getDisponibles() > 0){
+					s.get(j).venderButaca();
+					//En caso de que todo haya ido bien
+					entradas.add(entrada);
+					//Sesion en la que se proyecta la pelicula
+					return s.get(j);
+				}
+			}
+		}
+
+		return null;		
+	}
+
+	/**
+	* Calcular los beneficios del cine
+	* @return dinero recaudado
+	*/
+
+	public double getBeneficios(){
+		double res = 0;
+		int i;
+
+		for(i = 0; i < entradas.size(); i++){
+			res += entradas.get(i).getPrecio();
+		}
+
+		return res;
+	}
+
+	/**
+	* Elimina todos los registros de entradas anteriores
+	* @author Victoria Pelayo e Ignacio Rabunnal
+	*/
+
+	public void borrarEntradas(){
+		List<Entrada> entrads = new ArrayList<Entrada>();
+
+		entradas = entrads;
+	}
+
+	/**
+	* Elimina todos las peliclas
+	* @author Victoria Pelayo e Ignacio Rabunnal
+	*/
+
+	public void borrarPeliculas(){
+		List<Pelicula> pelicul = new ArrayList<Pelicula>();
+
+		peliculas = pelicul;
+	}
+
+	/**
+	* Elimina todos las salas
+	* @author Victoria Pelayo e Ignacio Rabunnal
+	*/
+
+	public void borrarSalas(){
+		List<Sala> sala = new ArrayList<Sala>();
+
+		salas = sala;
 	}
 
 }

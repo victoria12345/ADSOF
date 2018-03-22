@@ -37,10 +37,10 @@ public class Sesion{
 	public String toString(){
 		String sesion = "";
 
-		return sesion = sesion + "Fecha: " + fecha + "\n"+
-		"Pelicula: "+ pelicula.getTitulo() + "\n"+
-		"Butacas disponibles: "+ butacas_disp + "\n"+
-		"Vendidas: "+ vendidas+ "\n";
+		return sesion = sesion + "Fecha: " + fecha + "   "+
+		"Pelicula: "+ pelicula.getTitulo() + "   "+
+		"Butacas disponibles: "+ butacas_disp + "  "+
+		"Vendidas: "+ vendidas+ "   ";
 	}
 
 	/**
@@ -111,6 +111,16 @@ public class Sesion{
 
 	public void setDirector(Fecha fecha){
 		this.fecha = fecha;
+	}
+
+	/**
+	* Cambia el numero de butacas disponibles
+	* @author Victoria Pelayo e Ignacio Rabunnal
+	* @param butacas nuevo numero de butacas
+	*/
+
+	public void setButacas(int butacas){
+		this.butacas_disp = butacas;
 	}
 
 	/**

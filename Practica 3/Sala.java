@@ -8,11 +8,8 @@ import java.util.*;
 
 public class Sala{
 
-	public static int MAXSESIONES = 10;
-	public static int MAXBUTACAS = 100;
-
 	private int id;
-	private List<Entrada> butacas = new ArrayList<Entrada>();
+	private int butacas;
 	private List<Sesion> sesiones = new ArrayList<Sesion>();
 
 	/**
@@ -24,11 +21,10 @@ public class Sala{
 	* @param sinopsis sinopsis de la pelicula
 	* @genero genero genero de la pelicula
 	*/
-	public Sala(int id, List<Entrada> butacas, List<Sesion> sesiones){
+	public Sala(int id, int butacas){
 
 		this.id = id;
 		this.butacas = butacas;
-		this.sesiones = sesiones;
 
 	}
 
@@ -38,10 +34,10 @@ public class Sala{
    * @return cadena de caracteres formada por los datos
    */
 	public String toString(){
-		String sesion = "";
+		String sala = "";
 
-		return sesion = sesion + "Id:" + id + "\nButacas: " + butacas+
-						"\n Sesiones: " + sesiones +"\n";
+		return sala = sala + "Id:" + id + "   Butacas: " + butacas+
+						"    Sesiones: " + sesiones +"   ";
 	}
 
 	/**
@@ -60,7 +56,7 @@ public class Sala{
 	* @return butacas numero de butacas de una sala
 	*/
 
-	public List<Entrada> getButacas(){
+	public int getButacas(){
 		return butacas;
 	}
 
@@ -76,49 +72,19 @@ public class Sala{
 
 	/**
 	* Se añade una butaca
-	* @param butaca butaca que se desea añadir
-	* @return true si se realiza con exito y false si no es asi
+	* @author Victoria Pelayo e Ignacio Rabunnal
 	*/
-	public boolean addButaca(Entrada butaca){
-		if(butacas.size() == MAXBUTACAS){
-			return false;
-		}
-
-		butacas.add(butaca);
-		return true;
-	}
-
-	/**
-	* Se elimina una butaca
-	* @param butaca butaca que se desea eliminar
-	* @return true si se realiza con exito y false si no es asi
-	*/
-	public boolean delButaca(Entrada butaca){
-		if(butacas.isEmpty() == true){
-			return false;
-		}
-
-		int i;
-		for(i = 0; i < butacas.size(); i++){
-			if(butacas.get(i).getId() == butaca.getId()){
-				butacas.remove(i);
-				return true;
-			}
-		}
-
-		return false;
+	public void addButaca(){
+		butacas++;
 	}
 
 	/**
 	* Se añade una sesion
 	* @param sesion sesion que se desea añadir
 	* @return true si se realiza con exito y false si no es asi
+	* @author Victoria Pelayo e Ignacio Rabunnal
 	*/
 	public boolean addSesion(Sesion sesion){
-		if(sesiones.size() == MAXSESIONES){
-			return false;
-		}
-
 		int i;
 		for(i = 0; i < sesiones.size(); i++){
 			if(sesiones.get(i).getFecha() == sesion.getFecha()){
@@ -126,6 +92,11 @@ public class Sala{
 			}
 		}
 
+		// Si para esa sesion se vende mas entradas que butacas hay en la sala
+		// see cambian el numero de butacas en la sala
+		if(sesion.getDisponibles() >= butacas){ 
+			sesion.setButacas(butacas);
+		}
 		sesiones.add(sesion);
 		return true;
 	}
@@ -134,6 +105,7 @@ public class Sala{
 	* Se elimina una sesion
 	* @param sesion sesion que se desea eliminar
 	* @return true si se realiza con exito y false si no es asi
+	* @author Victoria Pelayo e Ignacio Rabunnal
 	*/
 	public boolean delSesion(Sesion sesion){
 		if(sesiones.isEmpty() == true){
@@ -142,12 +114,11 @@ public class Sala{
 
 		int i;
 		for(i = 0; i < sesiones.size(); i++){
-			if(sesiones.get(i).getId() == sesion.getId()){
+			if(sesiones.get(i) == sesion){
 				sesiones.remove(i);
 				return true;
 			}
 		}
-
 		return false;
 	}
 	

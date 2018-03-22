@@ -1,5 +1,5 @@
 public class EntradaEspectador extends Entrada{
-	public int descuento;
+	private int descuento;
 
 	/**
 	* Constructor de la clase entrada espectador
@@ -13,12 +13,14 @@ public class EntradaEspectador extends Entrada{
 
 	/**
 	* Imprime las caracteristicas de una entrada Espectador
+	* Se imprime precio inicial y el descuento que se aplica
 	* @return cadena de caracteres que son las caracteristicas
 	* @author Victoria Pelayo e Ignacio Rabuñal
 	*/
 	public String toString(){
+		String entrada;
 
-		return super.toString() + "Descuento: " + descuento + "\n";
+		return super.toString() + "  Descuento: " + descuento;
 	}
 
 	/**
@@ -44,7 +46,7 @@ public class EntradaEspectador extends Entrada{
 	* @param descuento entero que indica el nuevo descuento asociado
 	* @author Victoria Pelayo e Ignacio Rabuñal
 	*/
-	public double calcularPrecio(){
+	public double getPrecio(){
 		return super.getPrecio() - (super.getPrecio() * descuento/100);
 	}
 }
