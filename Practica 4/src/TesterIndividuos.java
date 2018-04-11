@@ -21,7 +21,7 @@ public class TesterIndividuos {
 		 System.out.println("Función suma: " + suma);
 		 System.out.println();
 		 System.out.println("Función resta: " + resta);
-
+		 
 		 IIndividuo indiv = new Individuo();
 		 indiv.setExpresion(resta);
 		 System.out.println();

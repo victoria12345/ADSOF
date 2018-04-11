@@ -7,7 +7,8 @@ import inodo.INodo;
 import inodo.Nodo;
 
 public class Terminal extends Nodo {
-	private static final int valor = 0;
+	// Como valor por defecto sera cero
+	private static double valor = 0;
 	
 	/**
 	 * Constructor de la clase terminal
@@ -41,6 +42,14 @@ public class Terminal extends Nodo {
 	 */
 	public double calcular() {
 		return valor;
+	}
+
+	public double getValor() {
+		return valor;
+	}
+
+	public static void setValor(double valor) {
+		Terminal.valor = valor;
 	}
 
 	@Override

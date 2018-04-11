@@ -1,7 +1,5 @@
 package inodo.funcion;
 
-import java.util.List;
-
 import inodo.INodo;
 import inodo.Nodo;
 
@@ -24,22 +22,6 @@ public class Function extends Nodo {
 	 */
 	public String getRaiz() {
 		return this.getNombre();
-	}
-
-	@Override
-	/**
-	 * @return lista de INodo de los descendientes de la funcion
-	 */
-	public List<INodo> getDescendientes() {
-		return this.getDescendientes();
-	}
-
-	@Override
-	/**
-	 * @return el resultado de realizar una operacion
-	 */
-	public double calcular() {
-		return 0;
 	}
 
 	@Override
@@ -75,9 +57,18 @@ public class Function extends Nodo {
 	 */
 	@Override
 	public void incluirDescendiente(INodo nodo) {
+		//Como maximo puede tener dos nodos una funcion
+		if(this.getDescendientes().size() == nNodos) {
+			return;
+		}
 		this.getDescendientes().add(nodo);
 		nNodos ++;
 		
+	}
+
+	@Override
+	public double calcular() {
+		return 0;
 	}
 
 }
