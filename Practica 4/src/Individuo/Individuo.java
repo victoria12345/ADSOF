@@ -1,5 +1,6 @@
 package Individuo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import inodo.INodo;
@@ -11,6 +12,7 @@ import inodo.terminal.Terminal;
 public class Individuo implements IIndividuo{
 
 	private Nodo raiz;
+	private List<INodo> etiquetados;
 	
 	@Override
 	/**
@@ -66,6 +68,52 @@ public class Individuo implements IIndividuo{
 		System.out.println(raiz);
 		
 	}
+	
+	public void etiquetaNodos() {
+		this.etiquetados = crearLista(raiz);
+	}
 
+	public List<INodo> getEtiquetados() {
+		return etiquetados;
+	}
 
+	public void setEtiquetados(List<INodo> etiquetados) {
+		this.etiquetados = etiquetados;
+	}
+
+	@SuppressWarnings("unchecked")
+	private List<INodo> crearLista(INodo raiz){
+		List<INodo> nodos, dch = new ArrayList<>();
+		nodos = new ArrayList<>();
+		INodo tmp , izq;
+		
+		nodos.add(raiz);
+		if(raiz.getDescendientes().size() == 0) {
+			return nodos;
+		}
+		izq =raiz.getDescendientes().get(0);
+		dch = (List<INodo>) raiz.getDescendientes().get(1);
+		while(dch.size() > 0) {
+			if(izq != null) {
+				nodos.add(izq.copy());
+				if(izq.getDescendientes().size() > 0) {
+					dch = (List<INodo>) izq.getDescendientes().get(1);
+					izq = izq.getDescendientes().get(0);
+				}
+			}
+			tmp = dch.get(dch.size() -1);
+			//eliminamos el nodo de la lista de los de la derecha
+			dch.remove(tmp);
+			nodos.add(tmp.copy());
+			if(tmp.getDescendientes().size() == 2) {
+				dch = (List<INodo>) tmp.getDescendientes().get(1);
+				izq = tmp.getDescendientes().get(0);
+			}
+			
+			
+		}
+		return nodos;
+	}
+	
+	
 }

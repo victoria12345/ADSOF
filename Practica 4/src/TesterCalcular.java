@@ -6,9 +6,8 @@ public class TesterCalcular {
 
 	public static void main(String[] args) {
 		 Terminal x = new TerminalAritmetico("x");
-		 x.setValor(5);
 		 Terminal y = new TerminalAritmetico("y");
-		 y.setValor(10);
+		 Terminal.setValor(10);
 		 Function suma = new FuncionSuma("+", 2);
 		 Function resta = new FuncionResta("-", 2);
 		 Function multi = new FuncionMultiplicacion("*", 2);
