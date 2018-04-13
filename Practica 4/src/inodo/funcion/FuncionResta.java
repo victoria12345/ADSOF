@@ -7,7 +7,7 @@ public class FuncionResta extends Function {
 	public FuncionResta(String nombre, int nNodos) {
 		super(nombre, nNodos);
 	}
-	
+
 	public String  toString() {
 		String multi = "";
 		//Si no hay dos operandos como defecto devuelve el simbolo
@@ -15,10 +15,10 @@ public class FuncionResta extends Function {
 			return "-";
 		}
 		multi += "( - " + getDescendientes().get(0)+ " " + getDescendientes().get(1)+" )";
-		
+
 		return multi;
 	}
-	
+
 	@Override
 	/**
 	 * @return el resultado de realizar una resta
@@ -33,17 +33,17 @@ public class FuncionResta extends Function {
 	public INodo copy() {
 		INodo copia = new FuncionResta(this.getNombre(), this.getnNodos());
 		INodo aux;
-		
+
 		for(INodo des: this.getDescendientes()) {
 			aux = des.copy();
 			copia.incluirDescendiente(aux);
 		}
-		
+
 		copia.setPadre(this.getPadre());
 		copia.setEtiqueta(this.getEtiqueta());
-		
+
 		return copia;
-		
+
 	}
-	
+
 }

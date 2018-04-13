@@ -4,9 +4,9 @@ import inodo.INodo;
 import inodo.Nodo;
 
 public class Function extends Nodo implements Cloneable {
-	
+
 	private int nNodos;
-	
+
 	/**
 	 * Constructor de la clase Function
 	 * @param nombre nombre de la clase function
@@ -34,12 +34,12 @@ public class Function extends Nodo implements Cloneable {
 		f.setDescendientes(this.getDescendientes());
 		return f;
 	}
-	
+
 	@Override
 	public String toString() {
 		String function = this.getNombre();
 		for(int i = 0; i < nNodos; i++) {
-			
+
 		}
 		return function;
 	}
@@ -51,7 +51,7 @@ public class Function extends Nodo implements Cloneable {
 	public void setnNodos(int nNodos) {
 		this.nNodos = nNodos;
 	}
-	
+
 	/**
 	 * Annade un descendiente al nodo
 	 * @param nodo nuevo descendiente
@@ -74,13 +74,13 @@ public class Function extends Nodo implements Cloneable {
 	@Override
 	public void setPadre(INodo nodo) {
 		super.setPadre(nodo);
-		
+
 	}
 
 	@Override
 	public INodo getPadre() {
 		return super.getPadre();
-		
+
 	}
 
 }

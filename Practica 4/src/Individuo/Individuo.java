@@ -10,16 +10,16 @@ import inodo.terminal.Terminal;
 
 
 public class Individuo implements IIndividuo{
-
+	private double fitness;
 	private Nodo raiz;
 	private List<INodo> etiquetados;
-	
+
 	@Override
 	/**
 	 * @return el nodo raiz
 	 */
 	public INodo getExpresion() {
-		
+
 		return raiz;
 	}
 
@@ -30,45 +30,54 @@ public class Individuo implements IIndividuo{
 	 */
 	public void setExpresion(INodo expresion) {
 		raiz = (Nodo)expresion;
-		
+
 	}
 
 	@Override
 	public double getFitness() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return fitness;
 	}
 
 	@Override
 	public void setFitness(double fitness) {
-		// TODO Auto-generated method stub
-		
+		this.fitness = fitness;
+
 	}
 
 	@Override
 	public void crearIndividuoAleatorio(int profundidad, List<Terminal> terminales, List<Function> funciones) {
-		// TODO Auto-generated method stub
-		
+		if(profundidad == 0) {
+			INodo f = funciones.get( (int) (Math.random()*funciones.size())).copy();
+			int pos1, pos2;
+			INodo t1;
+			INodo t2;
+			pos1 = (int) (Math.random()*funciones.size());
+			pos2 = (int) (Math.random()*funciones.size());
+			
+			t1 = terminales.get(pos1).copy();
+			t2 = terminales.get(pos2).copy();
+			
+			f.incluirDescendiente(t1);
+			f.incluirDescendiente(t2);
+			
+			this.raiz = (Nodo) f;
+		}
+
 	}
 
 	@Override
 	public double calcularExpresion() {
-		
-		return raiz.calcular();
-	}
 
-	@Override
-	public int getNumeroNodos() {
-		// TODO Auto-generated method stub
-		return raiz.getnNodos();
+		return raiz.calcular();
 	}
 
 	@Override
 	public void writeIndividuo() {
 		System.out.println(raiz);
-		
+
 	}
-	
+
 	public void etiquetaNodos() {
 		this.etiquetados = crearLista(raiz);
 		for(int i = 0; i < etiquetados.size(); i++) {
@@ -92,14 +101,14 @@ public class Individuo implements IIndividuo{
 		List<INodo> nodos, dch = new ArrayList<>();
 		nodos = new ArrayList<>();
 		INodo tmp , izq;
-		
+
 		nodos.add(raiz);
 		if(raiz.getDescendientes().size() == 0) {
 			return nodos;
 		}
 		izq =raiz.getDescendientes().get(0);
 		dch.add(raiz.getDescendientes().get(1));
-		
+
 		while(dch.size() > 0 || izq != null) {
 			if(izq != null) {
 				nodos.add(izq);
@@ -124,20 +133,20 @@ public class Individuo implements IIndividuo{
 		}
 		return nodos;
 	}
-	
+
 	public IIndividuo copy() {
 		IIndividuo copia = new Individuo();
 		List <INodo> nodos = new ArrayList<>();
 		copia.setExpresion(raiz.copy());
-		
+
 		for(int i = 0; i < etiquetados.size(); i++) {
 			nodos.add(etiquetados.get(i).copy());
 		}
-		
+
 		((Individuo) copia).setEtiquetados(nodos);
 		return copia;
-		
+
 	}
-	
-	
+
+
 }

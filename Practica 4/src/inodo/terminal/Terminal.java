@@ -9,7 +9,7 @@ import inodo.Nodo;
 public class Terminal extends Nodo {
 	// Como valor por defecto sera cero
 	private static double valor = 0;
-	
+
 	/**
 	 * Constructor de la clase terminal
 	 * @param nombre nombre del terminal
@@ -23,10 +23,10 @@ public class Terminal extends Nodo {
 	 * @return el simbolo de un terminal
 	 */
 	public String getRaiz() {
-		
+
 		return this.getNombre();
 	}
-	
+
 	@Override
 	/**
 	 * @return lista vacia
@@ -56,23 +56,23 @@ public class Terminal extends Nodo {
 	public String toString() {
 		return this.getNombre();
 	}
-	
+
 	public int getnNodos() {
 		return 0;
 	}
-	
+
 	public void setPadre(INodo nodo) {
 		super.setPadre(nodo);
 	}
-	
+
 	public INodo copy() {
 		INodo copia = new Terminal(this.getNombre());
-				
+
 		copia.setPadre(this.getPadre());
 		copia.setEtiqueta(this.getEtiqueta());
-		
+
 		return copia;
-		
+
 	}
 
 }

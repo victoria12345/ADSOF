@@ -5,7 +5,7 @@ import java.util.*;
 public abstract class Nodo implements INodo{
 	private INodo padre;
 	private int etiqueta;
-	
+
 	public int getEtiqueta() {
 		return etiqueta;
 	}
@@ -32,7 +32,7 @@ public abstract class Nodo implements INodo{
 		this.nombre = nombre;
 		descendientes = new ArrayList<>();
 	} 
-	
+
 	/**
 	 * @return lista de los descendientes del nodo
 	 */
@@ -62,7 +62,7 @@ public abstract class Nodo implements INodo{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	/**
 	 * Annade un descendiente al nodo
 	 * @param nodo nuevo descendiente
@@ -70,10 +70,10 @@ public abstract class Nodo implements INodo{
 	public void incluirDescendiente(INodo nodo) {
 		descendientes.add(nodo);
 		nodo.setPadre(this);
-		
+
 	}
-	
+
 	public abstract int getnNodos();
-	
-	
+
+
 }

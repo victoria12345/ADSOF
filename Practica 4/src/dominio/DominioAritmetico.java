@@ -13,9 +13,9 @@ public class DominioAritmetico implements IDominio{
 
 	private Map<Double, Double> valores = new TreeMap<>();
 	private List<Double> val = new ArrayList<>();
-	
+
 	public DominioAritmetico() {
-			
+
 	}
 
 	public List<Double> getVal() {
@@ -38,7 +38,7 @@ public class DominioAritmetico implements IDominio{
 	@Override
 	public List<Terminal> definirConjuntoTerminales(String... terminales) {
 		List<Terminal> tm = new ArrayList<Terminal>();
-		
+
 		for(String s: terminales) {
 			tm.add(new TerminalAritmetico(s));
 		}
@@ -49,10 +49,10 @@ public class DominioAritmetico implements IDominio{
 	public List<Function> definirConjuntoFunciones(int[] argumentos, String... funciones)
 			throws ArgsDistintosFuncionesException {
 		List<Function> fns = new ArrayList<>();
-		
+
 		int i = 0;
 		int j = argumentos.length;
-		
+
 		for(String f:funciones) {
 			i++;
 			if(j < i) {
@@ -60,7 +60,7 @@ public class DominioAritmetico implements IDominio{
 			}
 			fns.add(new Function(f, argumentos[i]));
 		}
-		
+
 		if(j != i) {
 			throw new ArgsDistintosFuncionesException();
 		}
@@ -72,17 +72,17 @@ public class DominioAritmetico implements IDominio{
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(new FileInputStream(ficheroDatos)));
 		String linea;
 		double valor, resultado;
-		
+
 		while((linea = buffer.readLine()) != null) {
 			String trozos[] = linea.split("\t");
-			
+
 			valor = Double.valueOf(trozos[0]).doubleValue();
 			resultado = Double.valueOf(trozos[1]).doubleValue();
-			
+
 			valores.put(valor,resultado);
 			val.add(valor);
 		}
-		
+
 		buffer.close();
 	}
 
@@ -91,17 +91,17 @@ public class DominioAritmetico implements IDominio{
 		if(val.size() == 0) {
 			return 0;
 		}
-		
+
 		double real, aprox, valor;
 		int fitness = 0;
-		
+
 		for(int i = 0; i < val.size(); i++) {
 			valor = val.get(i);
 			Terminal.setValor(valor);
 			real = valores.get(val.get(i));
-			
+
 			aprox = individuo.calcularExpresion();
-			
+
 			if(real -1 <= aprox && real +1 >= aprox) {
 				fitness++;
 			}
