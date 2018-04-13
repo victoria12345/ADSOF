@@ -40,6 +40,7 @@ public class FuncionSuma extends Function{
 		}
 		
 		copia.setPadre(this.getPadre());
+		copia.setEtiqueta(this.getEtiqueta());
 		
 		return copia;
 		

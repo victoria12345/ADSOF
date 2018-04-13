@@ -4,7 +4,16 @@ import java.util.*;
 
 public abstract class Nodo implements INodo{
 	private INodo padre;
+	private int etiqueta;
 	
+	public int getEtiqueta() {
+		return etiqueta;
+	}
+
+	public void setEtiqueta(int etiqueta) {
+		this.etiqueta = etiqueta;
+	}
+
 	public INodo getPadre() {
 		return padre;
 	}

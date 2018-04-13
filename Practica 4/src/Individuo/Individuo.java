@@ -71,6 +71,9 @@ public class Individuo implements IIndividuo{
 	
 	public void etiquetaNodos() {
 		this.etiquetados = crearLista(raiz);
+		for(int i = 0; i < etiquetados.size(); i++) {
+			etiquetados.get(i).setEtiqueta(i+1);
+		}
 	}
 
 	public List<INodo> getEtiquetados() {
@@ -79,6 +82,9 @@ public class Individuo implements IIndividuo{
 
 	public void setEtiquetados(List<INodo> etiquetados) {
 		this.etiquetados = etiquetados;
+		for(int i = 0; i < etiquetados.size(); i++) {
+			etiquetados.get(i).setEtiqueta(i+1);
+		}
 	}
 
 
@@ -117,6 +123,20 @@ public class Individuo implements IIndividuo{
 			}	
 		}
 		return nodos;
+	}
+	
+	public IIndividuo copy() {
+		IIndividuo copia = new Individuo();
+		List <INodo> nodos = new ArrayList<>();
+		copia.setExpresion(raiz.copy());
+		
+		for(int i = 0; i < etiquetados.size(); i++) {
+			nodos.add(etiquetados.get(i).copy());
+		}
+		
+		((Individuo) copia).setEtiquetados(nodos);
+		return copia;
+		
 	}
 	
 	

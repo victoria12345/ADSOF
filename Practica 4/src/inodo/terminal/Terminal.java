@@ -69,6 +69,7 @@ public class Terminal extends Nodo {
 		INodo copia = new Terminal(this.getNombre());
 				
 		copia.setPadre(this.getPadre());
+		copia.setEtiqueta(this.getEtiqueta());
 		
 		return copia;
 		

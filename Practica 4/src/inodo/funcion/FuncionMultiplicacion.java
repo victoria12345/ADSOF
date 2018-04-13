@@ -40,6 +40,7 @@ public class FuncionMultiplicacion extends Function{
 		}
 		
 		copia.setPadre(this.getPadre());
+		copia.setEtiqueta(this.getEtiqueta());
 		
 		return copia;
 		

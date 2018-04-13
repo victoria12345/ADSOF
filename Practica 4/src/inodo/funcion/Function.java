@@ -63,7 +63,7 @@ public class Function extends Nodo implements Cloneable {
 			return;
 		}
 		nodo.setPadre(this);
-		this.getDescendientes().add(nodo);		
+		this.getDescendientes().add(nodo.copy());		
 	}
 
 	@Override

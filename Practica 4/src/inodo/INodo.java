@@ -10,4 +10,6 @@ public interface INodo {
 	public void setDescendientes(List<INodo> desc);
 	public void setPadre(INodo nodo); 
 	public INodo getPadre();
+	public void setEtiqueta(int etiqueta);
+	public int getEtiqueta();
 }
