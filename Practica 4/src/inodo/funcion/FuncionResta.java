@@ -1,5 +1,7 @@
 package inodo.funcion;
 
+import inodo.INodo;
+
 public class FuncionResta extends Function {
 
 	public FuncionResta(String nombre, int nNodos) {
@@ -28,4 +30,19 @@ public class FuncionResta extends Function {
 		return getDescendientes().get(0).calcular() - getDescendientes().get(1).calcular();
 	}
 
+	public INodo copy() {
+		INodo copia = new FuncionResta(this.getNombre(), this.getnNodos());
+		INodo aux;
+		
+		for(INodo des: this.getDescendientes()) {
+			aux = des.copy();
+			copia.incluirDescendiente(aux);
+		}
+		
+		copia.setPadre(this.getPadre());
+		
+		return copia;
+		
+	}
+	
 }

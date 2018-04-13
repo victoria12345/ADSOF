@@ -81,7 +81,7 @@ public class Individuo implements IIndividuo{
 		this.etiquetados = etiquetados;
 	}
 
-	@SuppressWarnings("unchecked")
+
 	private List<INodo> crearLista(INodo raiz){
 		List<INodo> nodos, dch = new ArrayList<>();
 		nodos = new ArrayList<>();
@@ -92,25 +92,29 @@ public class Individuo implements IIndividuo{
 			return nodos;
 		}
 		izq =raiz.getDescendientes().get(0);
-		dch = (List<INodo>) raiz.getDescendientes().get(1);
-		while(dch.size() > 0) {
+		dch.add(raiz.getDescendientes().get(1));
+		
+		while(dch.size() > 0 || izq != null) {
 			if(izq != null) {
-				nodos.add(izq.copy());
-				if(izq.getDescendientes().size() > 0) {
-					dch = (List<INodo>) izq.getDescendientes().get(1);
+				nodos.add(izq);
+				if(izq.getDescendientes().size() == 2) {
+					dch.add(izq.getDescendientes().get(1));
 					izq = izq.getDescendientes().get(0);
+				}else {
+					izq = null;
 				}
-			}
-			tmp = dch.get(dch.size() -1);
-			//eliminamos el nodo de la lista de los de la derecha
-			dch.remove(tmp);
-			nodos.add(tmp.copy());
-			if(tmp.getDescendientes().size() == 2) {
-				dch = (List<INodo>) tmp.getDescendientes().get(1);
-				izq = tmp.getDescendientes().get(0);
-			}
-			
-			
+			}else {
+				tmp = dch.get(dch.size() -1);
+				//eliminamos el nodo de la lista de los de la derecha
+				dch.remove(tmp);
+				nodos.add(tmp);
+				if(tmp.getDescendientes().size() == 2) {
+					dch.add(tmp.getDescendientes().get(1));
+					izq = tmp.getDescendientes().get(0);
+				}else {
+					izq = null;
+				}
+			}	
 		}
 		return nodos;
 	}

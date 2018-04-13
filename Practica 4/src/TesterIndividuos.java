@@ -1,5 +1,8 @@
+
 import inodo.funcion.*;
 import inodo.terminal.*;
+
+
 import Individuo.*;
 
 public class TesterIndividuos {
@@ -10,7 +13,6 @@ public class TesterIndividuos {
 		 Function suma = new FuncionSuma("+", 2);
 		 Function resta = new FuncionResta("-", 2);
 		 Function multi = new FuncionMultiplicacion("*", 2);
-		 Function copia;
 		 multi.incluirDescendiente(x);
 		 multi.incluirDescendiente(x);
 		 suma.incluirDescendiente(multi);
@@ -21,14 +23,14 @@ public class TesterIndividuos {
 		 System.out.println();
 		 System.out.println("Función suma: " + suma);
 		 System.out.println();
+		 
 		 System.out.println("Función resta: " + resta);
-		 /*
 		 IIndividuo indiv = new Individuo();
 		 indiv.setExpresion(resta);
 		 System.out.println();
 		 System.out.println("INDIVIDUO");
 		 indiv.writeIndividuo();
-	*/
+	
 	} 
 
 }

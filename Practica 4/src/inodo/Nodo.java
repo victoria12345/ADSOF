@@ -3,7 +3,16 @@ package inodo;
 import java.util.*;
 
 public abstract class Nodo implements INodo{
+	private INodo padre;
 	
+	public INodo getPadre() {
+		return padre;
+	}
+
+	public void setPadre(INodo padre) {
+		this.padre = padre;
+	}
+
 	private String nombre;
 	private List<INodo> descendientes;
 	/**
@@ -51,6 +60,7 @@ public abstract class Nodo implements INodo{
 	 */
 	public void incluirDescendiente(INodo nodo) {
 		descendientes.add(nodo);
+		nodo.setPadre(this);
 		
 	}
 	

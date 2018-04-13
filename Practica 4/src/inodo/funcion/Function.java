@@ -3,7 +3,7 @@ package inodo.funcion;
 import inodo.INodo;
 import inodo.Nodo;
 
-public class Function extends Nodo {
+public class Function extends Nodo implements Cloneable {
 	
 	private int nNodos;
 	
@@ -28,17 +28,18 @@ public class Function extends Nodo {
 	/**
 	 * @return copia de la funcion en cuestion
 	 */
+
 	public INodo copy() {
 		Function f = new Function(this.getNombre(), this.getnNodos());
 		f.setDescendientes(this.getDescendientes());
 		return f;
 	}
-
+	
 	@Override
 	public String toString() {
 		String function = this.getNombre();
 		for(int i = 0; i < nNodos; i++) {
-			function += this.getDescendientes().get(i);
+			
 		}
 		return function;
 	}
@@ -61,14 +62,25 @@ public class Function extends Nodo {
 		if(this.getDescendientes().size() == nNodos) {
 			return;
 		}
-		this.getDescendientes().add(nodo);
-		nNodos ++;
-		
+		nodo.setPadre(this);
+		this.getDescendientes().add(nodo);		
 	}
 
 	@Override
 	public double calcular() {
 		return 0;
+	}
+
+	@Override
+	public void setPadre(INodo nodo) {
+		super.setPadre(nodo);
+		
+	}
+
+	@Override
+	public INodo getPadre() {
+		return super.getPadre();
+		
 	}
 
 }

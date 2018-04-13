@@ -6,5 +6,8 @@ public interface INodo {
 	public List<INodo> getDescendientes();
 	public void incluirDescendiente(INodo nodo);
 	public double calcular();
-	public INodo copy(); 
+	public INodo copy();
+	public void setDescendientes(List<INodo> desc);
+	public void setPadre(INodo nodo); 
+	public INodo getPadre();
 }

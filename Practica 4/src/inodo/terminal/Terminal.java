@@ -53,22 +53,25 @@ public class Terminal extends Nodo {
 	}
 
 	@Override
-	/**
-	 * @return una copa del terminal
-	 */
-	public INodo copy() {
-		Terminal t = new Terminal(this.getNombre());
-		t.setDescendientes(t.getDescendientes());
-		return t;
-	}
-
-	@Override
 	public String toString() {
 		return this.getNombre();
 	}
 	
 	public int getnNodos() {
 		return 0;
+	}
+	
+	public void setPadre(INodo nodo) {
+		super.setPadre(nodo);
+	}
+	
+	public INodo copy() {
+		INodo copia = new Terminal(this.getNombre());
+				
+		copia.setPadre(this.getPadre());
+		
+		return copia;
+		
 	}
 
 }

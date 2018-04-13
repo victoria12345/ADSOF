@@ -31,6 +31,7 @@ public class TesterCruce {
 		 prog1.writeIndividuo();
 		 System.out.println("PROGENITOR 2");
 		 prog2.writeIndividuo();
+		 
 		 try {
 		 descendientes = prueba.cruce(prog1, prog2);
 		 System.out.println();
@@ -39,8 +40,8 @@ public class TesterCruce {
 		 System.out.println("DESCENDIENTE 2");
 		 descendientes.get(1).writeIndividuo();
 		 } catch (CruceNuloException e) {
-		 e.printStackTrace();
+			 e.printStackTrace();
 		 }
-		 } 
+	} 
 
 }

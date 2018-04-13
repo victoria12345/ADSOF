@@ -1,4 +1,7 @@
 package inodo.funcion;
+
+import inodo.INodo;
+
 public class FuncionSuma extends Function{
 
 	public FuncionSuma(String nombre, int nNodos) {
@@ -27,4 +30,19 @@ public class FuncionSuma extends Function{
 		return getDescendientes().get(0).calcular() + getDescendientes().get(1).calcular();
 	}
 
+	public INodo copy() {
+		INodo copia = new FuncionSuma(this.getNombre(), this.getnNodos());
+		INodo aux;
+		
+		for(INodo des: this.getDescendientes()) {
+			aux = des.copy();
+			copia.incluirDescendiente(aux);
+		}
+		
+		copia.setPadre(this.getPadre());
+		
+		return copia;
+		
+	}
+	
 }

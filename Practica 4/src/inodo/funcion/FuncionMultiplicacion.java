@@ -1,5 +1,7 @@
 package inodo.funcion;
 
+import inodo.INodo;
+
 public class FuncionMultiplicacion extends Function{
 
 	public FuncionMultiplicacion(String nombre, int nNodos) {
@@ -26,5 +28,20 @@ public class FuncionMultiplicacion extends Function{
 			return 0;
 		}
 		return getDescendientes().get(0).calcular() * getDescendientes().get(1).calcular();
+	}
+	
+	public INodo copy() {
+		INodo copia = new FuncionMultiplicacion(this.getNombre(), this.getnNodos());
+		INodo aux;
+		
+		for(INodo des: this.getDescendientes()) {
+			aux = des.copy();
+			copia.incluirDescendiente(aux);
+		}
+		
+		copia.setPadre(this.getPadre());
+		
+		return copia;
+		
 	}
 }
