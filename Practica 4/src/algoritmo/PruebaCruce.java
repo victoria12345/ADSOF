@@ -65,11 +65,11 @@ public class PruebaCruce {
 
 
 		ii1 = new Individuo();
-		ii1.setExpresion(raiz1);
+		ii1.setExpresion(raiz1.copy());
 		individuos.add(ii1);
 
 		ii2 = new Individuo();
-		ii2.setExpresion(raiz2);
+		ii2.setExpresion(raiz2.copy());
 		individuos.add(ii2);
 
 		return individuos;

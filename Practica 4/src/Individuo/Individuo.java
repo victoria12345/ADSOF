@@ -11,7 +11,7 @@ import inodo.terminal.Terminal;
 
 public class Individuo implements IIndividuo{
 	private double fitness;
-	private Nodo raiz;
+	private INodo raiz;
 	private List<INodo> etiquetados;
 
 	@Override
@@ -47,23 +47,24 @@ public class Individuo implements IIndividuo{
 
 	@Override
 	public void crearIndividuoAleatorio(int profundidad, List<Terminal> terminales, List<Function> funciones) {
-		if(profundidad == 0) {
-			INodo f = funciones.get( (int) (Math.random()*funciones.size())).copy();
-			int pos1, pos2;
-			INodo t1;
-			INodo t2;
-			pos1 = (int) (Math.random()*funciones.size());
-			pos2 = (int) (Math.random()*funciones.size());
-			
-			t1 = terminales.get(pos1).copy();
-			t2 = terminales.get(pos2).copy();
-			
-			f.incluirDescendiente(t1);
-			f.incluirDescendiente(t2);
-			
-			this.raiz = (Nodo) f;
-		}
+		this.raiz = nodo_aleat(profundidad, terminales, funciones);
 
+	}
+	
+	private INodo nodo_aleat (int profundidad, List<Terminal> terminales, List<Function> funciones) {
+		if(profundidad == 0) {
+			INodo x = terminales.get((int) (Math.random()*funciones.size())).copy();
+			return  x;
+		
+		}else {
+			INodo f = funciones.get( (int) (Math.random()*funciones.size())).copy();
+			
+			for(int i = 0; i< ((Function)f).getnNodos(); i++) {
+				f.incluirDescendiente(nodo_aleat(profundidad - 1, terminales, funciones));
+			}
+			
+			return f;
+		}
 	}
 
 	@Override
