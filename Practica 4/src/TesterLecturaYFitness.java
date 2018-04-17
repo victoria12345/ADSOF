@@ -6,8 +6,21 @@ import inodo.terminal.*;
 import inodo.funcion.*;
 import Individuo.*;
 
+/**
+ * Descripcion de la clase TesterYLecturaFitness
+ * @author profesores ADSOF
+ *
+ */
 public class TesterLecturaYFitness {
 
+	/**
+	 * main de prueba del apartado2
+	 * @param args
+	 * @throws IOException
+	 * @throws IOException
+	 * 
+	 * @author profesores ADSOF
+	 */
 	public static void main(String[] args) throws IOException, IOException {
 		IDominio domAritm;
 		double fitness;

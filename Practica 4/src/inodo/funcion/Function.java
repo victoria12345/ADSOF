@@ -3,13 +3,21 @@ package inodo.funcion;
 import inodo.INodo;
 import inodo.Nodo;
 
-public class Function extends Nodo implements Cloneable {
+/**
+ * Descripcion de la clase funcion
+ * 
+ * @author Victoria Pelayo e Ignacio Rabunnal
+ */
+public class Function extends Nodo {
 
 	private int nNodos;
 
 	/**
 	 * Constructor de la clase Function
 	 * @param nombre nombre de la clase function
+	 * @param nNodos numero de nodos que va a tener la funcion
+	 * 
+	 * @author Victoria Pelayo e Ignacio Rabunnal
 	 */
 	public Function(String nombre, int nNodos) {
 		super(nombre);
@@ -19,6 +27,8 @@ public class Function extends Nodo implements Cloneable {
 	@Override
 	/**
 	 * @return el simbolo de la funcion
+	 * 
+	 * @author Victoria Pelayo e Ignacio Rabunnal
 	 */
 	public String getRaiz() {
 		return this.getNombre();
@@ -27,6 +37,8 @@ public class Function extends Nodo implements Cloneable {
 	@Override
 	/**
 	 * @return copia de la funcion en cuestion
+	 * 
+	 * @author Victoria Pelayo e Ignacio Rabunnal
 	 */
 
 	public INodo copy() {
@@ -36,6 +48,11 @@ public class Function extends Nodo implements Cloneable {
 	}
 
 	@Override
+	/**
+	 * @return cadena de caracteres con los datos de la funcion
+	 * 
+	 * @author Victoria Pelayo e Ignacio Rabunnal
+	 */
 	public String toString() {
 		String function = this.getNombre();
 		for(int i = 0; i < nNodos; i++) {
@@ -44,10 +61,21 @@ public class Function extends Nodo implements Cloneable {
 		return function;
 	}
 
+	/**
+	 * @return numero de nodos de la funcion
+	 * 
+	 * @author Victoria Pelayo e Ignacio Rabunnal
+	 */
 	public int getnNodos() {
 		return nNodos;
 	}
 
+	/**
+	 * Cambia el numero de nodos de la funcion
+	 * @param nNodos nuevo numero de nodos
+	 * 
+	 * @author Victoria Pelayo e Ignacio Rabunnal
+	 */
 	public void setnNodos(int nNodos) {
 		this.nNodos = nNodos;
 	}
@@ -55,10 +83,12 @@ public class Function extends Nodo implements Cloneable {
 	/**
 	 * Annade un descendiente al nodo
 	 * @param nodo nuevo descendiente
+	 * 
+	 * @author Victoria Pelayo e Ignacio Rabunnal
 	 */
 	@Override
 	public void incluirDescendiente(INodo nodo) {
-		//Como maximo puede tener dos nodos una funcion
+		//Como maximo puede tener nNodos nodos una funcion
 		if(this.getDescendientes().size() == nNodos) {
 			return;
 		}
@@ -67,17 +97,32 @@ public class Function extends Nodo implements Cloneable {
 	}
 
 	@Override
+	/**
+	 * Calcula el valor de la funcion
+	 * @return 0
+	 * 
+	 * @author Victoria Pelayo e Ignacio Rabunnal
+	 */
 	public double calcular() {
 		return 0;
 	}
 
 	@Override
+	/**
+	 * Cambia el padre de la funcion
+	 * @param nodo nuevo nodo padre
+	 * 
+	 * @author Victoria Pelayo e Ignacio Rabunnal
+	 */
 	public void setPadre(INodo nodo) {
 		super.setPadre(nodo);
 
 	}
 
 	@Override
+	/**
+	 * @return INodo padre de la funcion
+	 */
 	public INodo getPadre() {
 		return super.getPadre();
 

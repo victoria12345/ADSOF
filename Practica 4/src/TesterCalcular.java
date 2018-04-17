@@ -2,8 +2,19 @@ import inodo.funcion.*;
 import inodo.terminal.*;
 import Individuo.*;
 
+/**
+ * Constructor de la clase TesterCalcula
+ * @author profesores ADSOF
+ *
+ */
 public class TesterCalcular {
 
+	/**
+	 * Main para prubar las clases del apartado1
+	 * @param args
+	 * 
+	 * @author profesores ADSOF
+	 */
 	public static void main(String[] args) {
 		Terminal x = new TerminalAritmetico("x");
 		Terminal y = new TerminalAritmetico("y");

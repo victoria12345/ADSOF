@@ -4,9 +4,19 @@ import inodo.terminal.*;
 
 
 import Individuo.*;
-
+/**
+ * Descripcion de la clase TesterIndividuos
+ * @author profesores ADSOF
+ *
+ */
 public class TesterIndividuos {
 
+	/**
+	 * main para probar el apartado 1
+	 * @param args
+	 * 
+	 * @author profesores ADSOF
+	 */
 	public static void main(String[] args){
 
 		Terminal x = new TerminalAritmetico("x");

@@ -6,7 +6,18 @@ import excepciones.*;
 import Individuo.*;
 import algoritmo.PruebaCruce;
 
+/**
+ * Constructur de la clase TesterCruce
+ * @author profesores ADSOF
+ *
+ */
 public class TesterCruce {
+	/**
+	 * Descripcion del main para probar el apartado 3
+	 * @param args
+	 * 
+	 * @author profesores ADSOF
+	 */
 	public static void main(String[] args) {
 		PruebaCruce prueba = new PruebaCruce();
 		List<IIndividuo> descendientes = new ArrayList<IIndividuo>();
