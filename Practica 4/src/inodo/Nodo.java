@@ -10,8 +10,8 @@ import java.util.*;
 public abstract class Nodo implements INodo{
 
 	private String nombre;
-	private List<INodo> descendientes;
-	private INodo padre;
+	private List<INodo> descendientes = new ArrayList<>();
+	private INodo padre = null;
 	private int etiqueta;
 
 	/**
@@ -78,6 +78,9 @@ public abstract class Nodo implements INodo{
 	 */
 	public void setDescendientes(List<INodo> descendientes) {
 		this.descendientes = descendientes;
+		for(int i = 0; i < this.descendientes.size(); i++) {
+			descendientes.get(i).setPadre(this);
+		}
 	}
 
 	/**

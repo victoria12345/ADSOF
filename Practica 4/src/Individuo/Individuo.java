@@ -80,7 +80,7 @@ public class Individuo implements IIndividuo{
 			return;
 		}
 		
-		this.raiz = nodo_aleat(profundidad, terminales, funciones);
+		this.raiz = nodo_aleat(profundidad, terminales, funciones, this.raiz);
 
 	}
 	
@@ -93,20 +93,27 @@ public class Individuo implements IIndividuo{
 	 * 
 	 * @author Victoria Pelayo e Ignacio Rabunnal
 	 */
-	private INodo nodo_aleat (int profundidad, List<Terminal> terminales, List<Function> funciones) {
+	private INodo nodo_aleat (int profundidad, List<Terminal> terminales, List<Function> funciones, INodo padre) {
 		
 		if(profundidad == 0) {
 			INodo x = terminales.get((int) (Math.random()*terminales.size())).copy();
-			return  x;
+			x.setPadre(padre);
+			return  x.copy();
 		
 		}else {
+			List<INodo> descendientes = new ArrayList<>();
 			INodo f = funciones.get( (int) (Math.random()*funciones.size())).copy();
+			int prof = profundidad -1;
+			
+			f.setDescendientes(new ArrayList<INodo>());
 			
 			for(int i = 0; i< ((Function)f).getnNodos(); i++) {
-				f.incluirDescendiente(nodo_aleat(profundidad - 1, terminales, funciones));
+				descendientes.add(nodo_aleat(prof, terminales, funciones,f).copy());
 			}
 			
-			return f;
+			f.setDescendientes(descendientes);
+			
+			return f.copy();
 		}
 	}
 

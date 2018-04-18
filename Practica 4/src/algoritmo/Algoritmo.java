@@ -188,7 +188,7 @@ public class Algoritmo implements IAlgoritmo{
 						max = tmp.get(j);
 					}
 				}
-				aux.add(max);
+				aux.add(max.copy());
 				tmp.remove(max);
 				i++;
 			}
@@ -199,18 +199,22 @@ public class Algoritmo implements IAlgoritmo{
 			i = 0;
 			
 			while(i < K){
-				IIndividuo j = tmp.get((int) (Math.random()*aux.size()));
-				padres.add(j);
-				tmp.remove(j);
-				i++;
-				
+				if(tmp.size() < i) {
+					i = K;
+				}else {
+					IIndividuo j = tmp.get((int) (Math.random()*tmp.size()));
+					padres.add(j.copy());
+					tmp.remove(j);
+					i++;
+				}
 			}
 			
 			System.out.println("Candidatos para cruzarse: "+padres);
 			
 			//elegimos los dos mejores padres
 			i = 0;
-			while(i < 2) {
+			if(padres.size() >= 2){
+				while(i < 2) {
 				IIndividuo max = padres.get(0);
 				for(int j = 0; j < padres.size(); j++) {
 					if(padres.get(j).getFitness() > max.getFitness()) {
@@ -220,8 +224,12 @@ public class Algoritmo implements IAlgoritmo{
 				cruce.add(max);
 				padres.remove(max);
 				i++;
-			}
-			System.out.println("Individuos que se cruzan: "+cruce);
+				}
+				System.out.println("Individuos que se cruzan: "+cruce);
+			}else{
+				System.out.println("No hay suficientes individuos para el cruce");
+			}	
+			
 			
 			//Annadimos los hijos a la nueva poblacion
 			
@@ -232,10 +240,12 @@ public class Algoritmo implements IAlgoritmo{
 			}
 			
 			System.out.println("Poblacion total final: "+ poblacion2);
+			System.out.println("Pobalcion total (numero): "+ poblacion2.size()+"\n");
 			
 			nIndividuos = poblacion2.size();
 
 			this.setPoblacion(poblacion2);
+			
 			
 		}
 	}
@@ -275,6 +285,9 @@ public class Algoritmo implements IAlgoritmo{
 	public void setPoblacion(List<IIndividuo> poblacion) {
 		this.poblacion = poblacion;
 		this.nIndividuos = poblacion.size();
+		for(int i = 0; i < poblacion.size(); i++) {
+			poblacion.get(i).etiquetaNodos();
+		}
 	}
 	
 	/**
@@ -329,16 +342,14 @@ public class Algoritmo implements IAlgoritmo{
 		
 		for(int i = 0; i < poblacion.size(); i++) {
 			double fitness = dominio.calcularFitness(poblacion.get(i));
-			
 			poblacion.get(i).setFitness(fitness);
+			poblacion.get(i).etiquetaNodos();
 		}
 		
 		while(generacion < generaciones_max) {
-			
-			System.out.println("Generacion: "+generacion+" maximo: "+ generaciones_max);
-			
+			System.out.println("---------------------------------------------------------------------");
 			this.crearNuevaPoblacion();
-			
+						
 			//escribimos el fitness de cada individuo
 			for(int i = 0; i < poblacion.size(); i++) {
 				double fitness = dominio.calcularFitness(poblacion.get(i));
@@ -348,6 +359,11 @@ public class Algoritmo implements IAlgoritmo{
 			
 			generacion++;
 			System.out.println(this.toString());
+			System.out.println("---------------------------------------------------------------------");
+			if(generacion < generaciones_max) {
+				System.out.println("GENERANDO NUEVA POBLACION");
+			}
+			
 		}
 		
 	}
@@ -366,7 +382,6 @@ public class Algoritmo implements IAlgoritmo{
 		for(int i = 0; i < poblacion.size(); i++) {
 			algoritmo += ("INDIVIDUO "+ i+ "\n"+ poblacion.get(i)+ "\n----------------\n");
 		}
-		algoritmo += "Profundidad: "+ profundidad + "\n";
 		algoritmo += "Generacion: " + generacion + "\n";
 		
 		return algoritmo;

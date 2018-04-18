@@ -41,43 +41,92 @@ public class PruebaCruce {
 		raiz1 = nodos1.get(0).copy();
 		raiz2 = nodos2.get(0).copy();
 
-		padre2 = buscar(aux2.getPadre().getEtiqueta(), raiz2);
-		padre1 = buscar(aux1.getPadre().getEtiqueta(), raiz1);
-		
-		
-		
-		if(padre1.getDescendientes().get(0).getEtiqueta() == a1) {
-			tmp1 = padre1.getDescendientes().get(1);
-			padre1.setDescendientes(new ArrayList<INodo>());
-			padre1.incluirDescendiente(aux2.copy());
-			padre1.incluirDescendiente(tmp1.copy());
-		}else {
-			tmp1 = padre1.getDescendientes().get(0);
-			padre1.setDescendientes(new ArrayList<INodo>());
-			padre1.incluirDescendiente(tmp1.copy());
-			padre1.incluirDescendiente(aux2.copy());
-		}
 
-		padre2 = buscar(aux2.getPadre().getEtiqueta(), raiz2);
 		
-		if(padre2.getDescendientes().get(0).getEtiqueta() == a2) {
-			tmp2 = padre2.getDescendientes().get(1);
-			padre2.setDescendientes(new ArrayList<INodo>());
-			padre2.incluirDescendiente(aux1.copy());
-			padre2.incluirDescendiente(tmp2.copy());
+		if(aux1.getPadre() == null) {
+			raiz1 = aux1.copy();
+			aux1.setPadre(null);
 		}else {
-			tmp2 = padre2.getDescendientes().get(0);
-			padre2.setDescendientes(new ArrayList<INodo>());
-			padre2.incluirDescendiente(tmp2.copy());
-			padre2.incluirDescendiente(aux1.copy());
+			
+			padre1 = buscar(aux1.getPadre().getEtiqueta(), raiz1);
+			
+			if(padre1 == null) {
+				raiz1 = aux1.copy();
+				aux1.setPadre(null);
+			}else {
+				
+				if(padre1.getDescendientes().size()<2) {
+					padre1.setDescendientes(new ArrayList<INodo>());
+					padre1.incluirDescendiente(aux2.copy());
+					aux2.setPadre(padre1);
+				}
+				
+				if(padre1.getDescendientes().get(0).getEtiqueta() == a1) {
+					tmp1 = padre1.getDescendientes().get(1);
+					padre1.setDescendientes(new ArrayList<INodo>());
+					padre1.incluirDescendiente(aux2.copy());
+					padre1.incluirDescendiente(tmp1.copy());
+					aux2.setPadre(padre1);
+				}else {
+					tmp1 = padre1.getDescendientes().get(0);
+					padre1.setDescendientes(new ArrayList<INodo>());
+					padre1.incluirDescendiente(tmp1.copy());
+					padre1.incluirDescendiente(aux2.copy());
+					aux2.setPadre(padre1);
+				}
+			}
+			
 		}
+	
+		
+		
+		if(aux2.getPadre() == null) {
+			raiz2 = aux2.copy();
+			aux2.setPadre(null);
+		}else {
+			
+			padre2 = buscar(aux2.getPadre().getEtiqueta(), raiz2);
+			
+			if(padre2 == null) {
+				raiz2 = aux2.copy();
+				aux2.setPadre(null);					
+			}else {
+				
+				if(padre2.getDescendientes().size() < 2) {
+					padre2.setDescendientes(new ArrayList<INodo>());
+					padre2.incluirDescendiente(aux1.copy());
+					aux1.setPadre(padre2);
+				}else {
+					if(padre2.getDescendientes().get(0).getEtiqueta() == a2) {
+						
+						tmp2 = padre2.getDescendientes().get(1);
+						padre2.setDescendientes(new ArrayList<INodo>());
+						padre2.incluirDescendiente(aux1.copy());
+						padre2.incluirDescendiente(tmp2.copy());
+						aux1.setPadre(padre2);
+					}else {
+						tmp2 = padre2.getDescendientes().get(0);
+						padre2.setDescendientes(new ArrayList<INodo>());
+						padre2.incluirDescendiente(tmp2.copy());
+						padre2.incluirDescendiente(aux1.copy());
+						aux1.setPadre(padre2);
+					}
+				}
+				
+			}
+		
+		}
+		
+		
 		
 		ii1 = new Individuo();
 		ii1.setExpresion(raiz1.copy());
+		ii1.etiquetaNodos();
 		individuos.add(ii1);
 		
 		ii2 = new Individuo();
 		ii2.setExpresion(raiz2.copy());
+		ii2.etiquetaNodos();
 		individuos.add(ii2);
 		
 		return individuos;
@@ -93,6 +142,11 @@ public class PruebaCruce {
 	 */
 	private INodo buscar(int etiqueta, INodo raiz) {
 		INodo tmp;
+		
+		if(raiz == null) {
+			return null;
+		}
+		
 		if(raiz.getEtiqueta() == etiqueta) {
 			return raiz;
 		}
